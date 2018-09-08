@@ -123,37 +123,48 @@ public class TeleOpPrototype extends OpMode{
 
     public void joystickWheelControl() {
 
+        double throttle = -gamepad1.left_stick_y;
+        double direction = gamepad1.left_stick_x;
+        double left = throttle*Math.abs(throttle) + direction*Math.abs(direction);
+        double right = throttle*Math.abs(throttle) - direction*Math.abs(direction);
+
+        robot.motorLeftBackWheel.setPower(left);
+        robot.motorLeftFrontWheel.setPower(left);
+        robot.motorRightBackWheel.setPower(right);
+        robot.motorRightFrontWheel.setPower(right);
+
+
         // Mecanum wheel driving system (note: The joystick goes negative when pushed forwards, so negate it)
-        float throttle = -gamepad1.right_stick_y;
-        float direction = gamepad1.right_stick_x;
-        float parallel = -gamepad1.left_stick_x;
-        double diagonal = gamepad1.left_stick_y;
-        double right = throttle - direction;
-        double left = throttle + direction;
-        double diagonal1 = parallel + diagonal;
-        double diagonal2 = -parallel + diagonal;
-
-        if (Math.abs(parallel) > 0.05 || Math.abs(diagonal) > 0.05) {
-
-            //parallel and diagonal movement
-            diagonal1 = Range.clip(diagonal1, -1, 1);
-            diagonal2 = Range.clip(diagonal2, -1, 1);
-            robot.motorLeftBackWheel.setPower(-diagonal2*Math.abs(diagonal2));
-            robot.motorLeftFrontWheel.setPower(-diagonal1*Math.abs(diagonal1));
-            robot.motorRightBackWheel.setPower(-diagonal1*Math.abs(diagonal1));
-            robot.motorRightFrontWheel.setPower(-diagonal2*Math.abs(diagonal2));
-
-        } else {
-
-            // clip the right/left values so that the values never exceed +/- 1
-            right = Range.clip(right, -1, 1);
-            left = Range.clip(left, -1, 1);
-            robot.motorLeftBackWheel.setPower(left);
-            robot.motorLeftFrontWheel.setPower(left);
-            robot.motorRightBackWheel.setPower(right);
-            robot.motorRightFrontWheel.setPower(right);
-
-        }
+//        float throttle = -gamepad1.right_stick_y;
+//        float direction = gamepad1.right_stick_x;
+//        float parallel = -gamepad1.left_stick_x;
+//        double diagonal = gamepad1.left_stick_y;
+//        double right = throttle - direction;
+//        double left = throttle + direction;
+//        double diagonal1 = parallel + diagonal;
+//        double diagonal2 = -parallel + diagonal;
+//
+//        if (Math.abs(parallel) > 0.05 || Math.abs(diagonal) > 0.05) {
+//
+//            //parallel and diagonal movement
+//            diagonal1 = Range.clip(diagonal1, -1, 1);
+//            diagonal2 = Range.clip(diagonal2, -1, 1);
+//            robot.motorLeftBackWheel.setPower(-diagonal2*Math.abs(diagonal2));
+//            robot.motorLeftFrontWheel.setPower(-diagonal1*Math.abs(diagonal1));
+//            robot.motorRightBackWheel.setPower(-diagonal1*Math.abs(diagonal1));
+//            robot.motorRightFrontWheel.setPower(-diagonal2*Math.abs(diagonal2));
+//
+//        } else {
+//
+//            // clip the right/left values so that the values never exceed +/- 1
+//            right = Range.clip(right, -1, 1);
+//            left = Range.clip(left, -1, 1);
+//            robot.motorLeftBackWheel.setPower(left);
+//            robot.motorLeftFrontWheel.setPower(left);
+//            robot.motorRightBackWheel.setPower(right);
+//            robot.motorRightFrontWheel.setPower(right);
+//
+//        }
 
         // Send telemetry message to signify robot running;
         telemetry.addData("left",  "%.4f", left);

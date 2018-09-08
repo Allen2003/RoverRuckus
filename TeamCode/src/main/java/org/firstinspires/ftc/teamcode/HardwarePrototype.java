@@ -4,6 +4,7 @@ import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -79,8 +80,8 @@ public class HardwarePrototype extends HardwareBase
 
         motorLeftBackWheel = hwMap.dcMotor.get("leftBackWheel");
         motorRightBackWheel = hwMap.dcMotor.get("rightBackWheel");
-        motorLeftBackWheel.setDirection(DcMotor.Direction.REVERSE);  // 40 to 1 andymark motor
-        motorRightBackWheel.setDirection(DcMotor.Direction.FORWARD); // 40 to 1 andymark motor
+        motorLeftBackWheel.setDirection(DcMotor.Direction.FORWARD);  // 40 to 1 andymark motor
+        motorRightBackWheel.setDirection(DcMotor.Direction.REVERSE); // 40 to 1 andymark motor
         motorLeftBackWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorRightBackWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorLeftBackWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -88,8 +89,8 @@ public class HardwarePrototype extends HardwareBase
 
         motorLeftFrontWheel = hwMap.dcMotor.get("leftFrontWheel");
         motorRightFrontWheel = hwMap.dcMotor.get("rightFrontWheel");
-        motorLeftFrontWheel.setDirection(DcMotor.Direction.REVERSE);  // 40 to 1 andymark motor
-        motorRightFrontWheel.setDirection(DcMotor.Direction.FORWARD); // 40 to 1 andymark motor
+        motorLeftFrontWheel.setDirection(DcMotor.Direction.FORWARD);  // 40 to 1 andymark motor
+        motorRightFrontWheel.setDirection(DcMotor.Direction.REVERSE); // 40 to 1 andymark motor
         motorLeftFrontWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorRightFrontWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorLeftFrontWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
